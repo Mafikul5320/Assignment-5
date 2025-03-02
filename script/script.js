@@ -44,31 +44,32 @@ for(let btn of completed){
             convertTaskChake++;
             taskCheck.innerText = convertTaskChake;
         }
-
-        
-
-        
-                
+                      
         document.getElementById('history').style.display = 'block'
 
-        const history = document.getElementById('history');
-        const divcontainer = document.createElement('div')
 
-        divcontainer.innerHTML= `
-                        <div class="p-3">
+        document.body.onclick = function(event) {
+            if (event.target.classList.contains("completed")) {
+                const taskCard = event.target.closest(".task-card");
+                const taskTitle = taskCard.dataset.title;
+                document.getElementById("history").innerHTML = `
+                
+                <div class="p-3">
                             <div class="bg-[#f4f7ff] p-3 rounded-lg ">
-                                <p>You have Complete Fix Mobile Button Issue at  ${new Date().toLocaleTimeString()}</p>
+                                <p>You have Complete ${taskTitle} at  ${new Date().toLocaleTimeString()}</p>
                             </div>
                         </div>
-                        `
-        history.appendChild(divcontainer)
+                
+                
+                ` + document.getElementById("history").innerHTML;
+            }
+        };
+
     })
 }
     const clearHistory = document.getElementById('clear-history').addEventListener('click',function(){
     document.getElementById('history').style.display = 'none'
 })
-
-
 
 const nextPage =document.getElementById('next-page').addEventListener('click',function(){
     window.location.href = './question-ans.html'
